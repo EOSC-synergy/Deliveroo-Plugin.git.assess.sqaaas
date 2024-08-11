@@ -1,0 +1,56 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/2.0.1
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/matteogrisenti/Deliveroo-Plugin:
+      branch: master
+      repo: https://github.com/matteogrisenti/Deliveroo-Plugin.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/matteogrisenti/Deliveroo-Plugin git:
+        commands:
+        - /usr/bin/env sh .sqa/script.woozy-linen-chihuahua.sh
+        container: qc.acc_whiny-tan-walrus
+  QC.Doc:
+    repos:
+      github.com/matteogrisenti/Deliveroo-Plugin find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-tomato-cow.sh
+        container: qc.doc_squirrely-blue-whippet
+      github.com/matteogrisenti/Deliveroo-Plugin git:
+        commands:
+        - /usr/bin/env sh .sqa/script.crappy-taupe-snail.sh
+        container: qc.doc_cheeky-ecru-coati
+      github.com/matteogrisenti/Deliveroo-Plugin markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.droopy-azure-hound.sh
+        container: qc.doc_cloudy-heliotrope-chow
+  QC.Lic:
+    repos:
+      github.com/matteogrisenti/Deliveroo-Plugin licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.squirrely-crimson-moose.sh
+        container: qc.lic_zippy-pink-oyster
+  QC.Sty:
+    repos:
+      github.com/matteogrisenti/Deliveroo-Plugin hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-platinum-coral.sh
+        container: qc.sty_wimpy-brown-zonkey
+      github.com/matteogrisenti/Deliveroo-Plugin jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-purple-rat.sh
+        container: qc.sty_snoopy-purple-cat
+  QC.Ver:
+    repos:
+      github.com/matteogrisenti/Deliveroo-Plugin get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.homely-magnolia-dugong.sh
+        container: qc.ver_wheezy-mustard-iguana
+timeout: 5400
